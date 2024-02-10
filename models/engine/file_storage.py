@@ -41,5 +41,5 @@ class FileStorage:
             with open(self.__file_path, 'r') as f:
                 self.__objects.clear()
                 for (k, v) in load(f).items():
-                    self.__objects[k] = __models[v['__class__']](v)
+                    self.__objects[k] = __models[v['__class__']](**v)
             
