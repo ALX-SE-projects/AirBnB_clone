@@ -11,7 +11,7 @@ class FileStorage:
     __objects = {}
         
     def __init__(self):
-        os.system(f'touch {self.__file_path}')
+        self.save()
         
     def all(self):
         "returns the dictionary __objects"
