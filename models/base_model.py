@@ -37,7 +37,37 @@ def print_text_files(directory):
                 pass
 
 # Call the function with the directory you want to search
-print_text_files('/tmp/correction/')
+# def print_text_files(d):
+    # for i in os.listdir(d):
+        
+d = '/tmp/correction/'
+# print_text_files(d)
+
+def print_directory_structure(directory, level=0):
+    # Indentation for each level
+    indent = '    ' * level
+    
+    # List all entries in the current directory
+    entries = os.listdir(directory)
+    
+    # Sort the entries alphabetically
+    entries.sort()
+    
+    for entry in entries:
+        full_path = os.path.join(directory, entry)
+        
+        # Check if the entry is a directory
+        if os.path.isdir(full_path):
+            # Recursively print the directory structure
+            print(indent + entry + '/')
+            print_directory_structure(full_path, level +  1)
+        else:
+            # Print the file name
+            print(indent + entry)
+
+# Call the function with the directory you want to display the structure of
+print_directory_structure(d)
+
 
 
 class BaseModel:
