@@ -40,3 +40,5 @@ class FileStorage:
         else:
             self.save()
             
+storage = FileStorage()
+storage.reload()
