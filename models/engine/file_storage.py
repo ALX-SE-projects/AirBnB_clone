@@ -42,4 +42,4 @@ class FileStorage:
             
 if not os.path.exists(FileStorage._FileStorage__file_path):
     with open(FileStorage._FileStorage__file_path, 'wt') as fw:
-        fw.write('{}')
+        fw.write('{}\n')
