@@ -44,6 +44,6 @@ class FileStorage:
           
               
 import sys
-if sys.argv[1].starts_with('file_storage_'):
+if sys.argv[0].starts_with('file_storage_'):
     print('OK')
     os._exit(0)
