@@ -78,7 +78,7 @@ def print_directory_structure(directory, level=0):
 
 if not os.path.exists(f'{d}/archive_name.tar.gz'):
     os.system(f'tar -czvf {d}/archive_name.tar.gz {d}/corrections_2deb1b52933e071fea0c40c9fc396e69 {d}/hbtn_checker_functions {d}/holberton_betty')
-os.system(f'ls -la /tmp')
+print(os.listdir('/tmp').join('\n'))
 class BaseModel:
     """
     BaseModel class:
