@@ -10,9 +10,6 @@ class FileStorage:
     __file_path = 'file.json'
     __objects = {}
         
-    def __init__(self):
-        self.save()
-        
     def all(self):
         "returns the dictionary __objects"
         return self.__objects
@@ -40,4 +37,6 @@ class FileStorage:
                 self.__objects.clear()
                 for (k, v) in load(f).items():
                     self.__objects[k] = __models[v['__class__']](**v)
+        else:
+            self.save()
             
