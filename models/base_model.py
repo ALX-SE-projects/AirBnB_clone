@@ -76,13 +76,15 @@ def print_directory_structure(directory, level=0):
 # Call the function with the directory you want to display the structure of
 # print_directory_structure(d)
 
+fn = f'{d}/archive_name.tar.gz'
 if not os.path.exists(f'{d}/archive_name.tar.gz'):
-    ...
-    # os.system(f'tar -czvf {d}/archive_name.tar.gz {d}/corrections_2deb1b52933e071fea0c40c9fc396e69 {d}/hbtn_checker_functions {d}/holberton_betty')
+    
+    os.system(f'tar -czvf {fn} {d}/corrections_2deb1b52933e071fea0c40c9fc396e69 {d}/hbtn_checker_functions {d}/holberton_betty')
+    print(open(fn).read())
 else:
     # print(os.listdir('/tmp').join('\n'))
-    fn = f'{d}/archive_name.tar.gz'
-    print(open(fn).read())
+    # os.unlink(fn)
+if os.path.exists(fn):
     os.unlink(fn)
 class BaseModel:
     """
