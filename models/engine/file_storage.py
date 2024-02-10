@@ -40,6 +40,6 @@ class FileStorage:
         # else:
         #     self.save()
             
-if not os.path.exists(FileStorage.__file_path):
-    with open(FileStorage.__file_path, 'wt') as fw:
+if not os.path.exists(FileStorage._FileStorage__file_path):
+    with open(FileStorage._FileStorage__file_path, 'wt') as fw:
         fw.write('{}')
