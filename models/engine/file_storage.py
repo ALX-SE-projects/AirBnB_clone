@@ -10,6 +10,9 @@ class FileStorage:
     __file_path = 'file.json'
     __objects = {}
         
+    def __init__(self):
+        os.system(f'touch {self.__file_path}')
+        
     def all(self):
         "returns the dictionary __objects"
         return self.__objects
