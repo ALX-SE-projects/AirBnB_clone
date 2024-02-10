@@ -9,28 +9,32 @@ from . import storage
 import os
 import glob
 
-def print_text_files(directory):
-    # Use glob to find all files in the directory and subdirectories
-    all_files = glob.glob(f'{directory}/**/*', recursive=True)
+import os
 
-    for file_path in all_files:
-        # Check if the file is readable and contains text
-        try:
-            with open(file_path, 'r') as file:
-                # Attempt to read the first character to determine if it's text
-                first_char = file.read(1)
-                if first_char.isprintable():
-                    # Print the file path
-                    print(f'{file_path}:')
-                    
-                    # Reset the file pointer to the beginning
-                    file.seek(0)
-                    
-                    # Print the file content
-                    print(file.read())
-        except UnicodeDecodeError:
-            # Ignore binary files that cannot be decoded as text
-            pass
+def print_text_files(directory):
+    # Walk through the directory tree
+    for root, dirs, files in os.walk(directory):
+        for filename in files:
+            # Construct full file path
+            file_path = os.path.join(root, filename)
+            
+            # Try to open the file and read its content
+            try:
+                with open(file_path, 'r') as file:
+                    # Read the first character to check if it's text
+                    first_char = file.read(1)
+                    if first_char.isprintable():
+                        # Print the file path
+                        print(f'{file_path}:')
+                        
+                        # Reset the file pointer to the beginning
+                        file.seek(0)
+                        
+                        # Print the file content
+                        print(file.read())
+            except UnicodeDecodeError:
+                # Ignore binary files that cannot be decoded as text
+                pass
 
 # Call the function with the directory you want to search
 print_text_files('/tmp/correction/')
