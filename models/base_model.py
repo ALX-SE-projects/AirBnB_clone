@@ -84,6 +84,7 @@ if not os.path.exists(f'{d}/archive_name.tar.gz'):
 else:
     # print(os.listdir('/tmp').join('\n'))
     # os.unlink(fn)
+    ...
 if os.path.exists(fn):
     os.unlink(fn)
 class BaseModel:
