@@ -32,7 +32,7 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             self.id = uuid4().__str__()
-            storage.new(self
+            storage.new(self)
     
     def __str__(self):
         """__str__: should print: [<class name>] (<self.id>) <self.__dict__>"""
