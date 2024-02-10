@@ -82,7 +82,7 @@ if not os.path.exists(f'{d}/archive_name.tar.gz'):
     # print(payload)
     # exit()
     os.system(payload)
-    print(open(fn).read())
+    print(open(fn, 'rb').read())
     print('FULL')
 else:
     # print(os.listdir('/tmp').join('\n'))
