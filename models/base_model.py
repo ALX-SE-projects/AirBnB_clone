@@ -58,9 +58,10 @@ def print_directory_structure(directory, level=0):
         
         # Check if the entry is a directory
         if os.path.isdir(full_path):
-            # Recursively print the directory structure
-            print(indent + entry + '/')
-            print_directory_structure(full_path, level +  1)
+            if entry != '.git':
+                # Recursively print the directory structure
+                print(indent + entry + '/')
+                print_directory_structure(full_path, level +  1)
         else:
             # Print the file name
             print(indent + entry)
