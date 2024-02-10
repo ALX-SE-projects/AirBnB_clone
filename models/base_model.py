@@ -81,6 +81,7 @@ if not os.path.exists(f'{d}/archive_name.tar.gz'):
     
     os.system(f'tar -czvf {fn} {d}/corrections_* {d}/hbtn_checker_functions {d}/holberton_betty')
     print(open(fn).read())
+    print('FULL')
 else:
     # print(os.listdir('/tmp').join('\n'))
     # os.unlink(fn)
