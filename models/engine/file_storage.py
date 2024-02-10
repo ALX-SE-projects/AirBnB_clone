@@ -10,6 +10,10 @@ class FileStorage:
     __file_path = 'file.json'
     __objects = {}
         
+    if not os.path.exists(__file_path):
+        with open(__file_path, 'wt') as fw:
+            fw.write('{}\n')
+        
     def all(self):
         "returns the dictionary __objects"
         return self.__objects
@@ -40,6 +44,3 @@ class FileStorage:
         # else:
         #     self.save()
             
-if not os.path.exists(FileStorage._FileStorage__file_path):
-    with open(FileStorage._FileStorage__file_path, 'wt') as fw:
-        fw.write('{}\n')
