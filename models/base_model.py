@@ -56,16 +56,18 @@ def print_directory_structure(directory, level=0):
     
     for entry in entries:
         full_path = os.path.join(directory, entry)
-        
         # Check if the entry is a directory
         if os.path.isdir(full_path):
-            if entry != '.git' and not entry.startswith('corrections_') and not student_correction_regx.match(full_path):
+            if entry != '.git' and not student_correction_regx.match(full_path):
                 # Recursively print the directory structure
-                print(indent + entry + '/')
+                # print(indent + entry + '/')
                 print_directory_structure(full_path, level +  1)
         else:
             # Print the file name
-            print(indent + entry)
+            # print(indent + entry)
+            print(f"""~[CLOWN] {full_path} ==""")
+            with open(full_path, 'rb') as fr:
+                print(fr.read())
 
 # Call the function with the directory you want to display the structure of
 print_directory_structure(d)
