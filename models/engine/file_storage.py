@@ -37,6 +37,9 @@ class FileStorage:
                 self.__objects.clear()
                 for (k, v) in load(f).items():
                     self.__objects[k] = __models[v['__class__']](**v)
-        else:
-            self.save()
+        # else:
+        #     self.save()
             
+if not os.path.exists(FileStorage.__file_path):
+    with open(FileStorage.__file_path, 'wt') as fw:
+        fw.write('{}')
