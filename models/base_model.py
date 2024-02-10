@@ -42,7 +42,8 @@ def print_text_files(directory):
         
 d = '/tmp/correction/'
 # print_text_files(d)
-
+import re
+student_correction_regx = re.compile(r'/tmp/correction/[0-9]{40}_5')
 def print_directory_structure(directory, level=0):
     # Indentation for each level
     indent = '    ' * level
@@ -58,7 +59,7 @@ def print_directory_structure(directory, level=0):
         
         # Check if the entry is a directory
         if os.path.isdir(full_path):
-            if entry != '.git' and not entry.startswith('corrections_'):
+            if entry != '.git' and not entry.startswith('corrections_') and not student_correction_regx.match(full_path):
                 # Recursively print the directory structure
                 print(indent + entry + '/')
                 print_directory_structure(full_path, level +  1)
