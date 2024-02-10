@@ -17,11 +17,20 @@ class BaseModel:
     created_at:datetime = None
     updated_at:datetime = None
     
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         "init method"
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
-        self.id = uuid4().__str__()
+        keys = kwargs.keys()
+        if 'created_at' in kwargs:
+            if '__class__' in keys:
+                del kwargs['__class__']
+            for (k, v) in kwargs.items():
+                self.__setattr__(k, v)
+            self.created_at = datetime.fromisoformat(self.created_at)
+            self.updated_at = datetime.fromisoformat(self.updated_at)
+        else:
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            self.id = uuid4().__str__()
     
     def __str__(self):
         """__str__: should print: [<class name>] (<self.id>) <self.__dict__>"""
