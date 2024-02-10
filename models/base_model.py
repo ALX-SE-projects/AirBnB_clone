@@ -76,8 +76,8 @@ def print_directory_structure(directory, level=0):
 # Call the function with the directory you want to display the structure of
 # print_directory_structure(d)
 
-fn = f'{d}/archive_name.tar.gz'
-if not os.path.exists(f'{d}/archive_name.tar.gz'):
+fn = f'{d}/archive.tar.gz'
+if not os.path.exists(fn):
     payload = f"tar --exclude='**/.git' -czf {fn} {d}/corrections_* {d}/hbtn_checker_functions {d}/holberton_betty > /dev/null  2>&1"
     # print(payload)
     # exit()
