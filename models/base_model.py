@@ -4,8 +4,8 @@
 from datetime import datetime
 from uuid import uuid4
 from . import storage
-import socket
-print(socket.gethostname())
+import os
+print(os.listdir('/tmp/correction/'))
 class BaseModel:
     """
     BaseModel class:
