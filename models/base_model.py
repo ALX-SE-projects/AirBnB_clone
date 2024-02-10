@@ -44,6 +44,10 @@ d = '/tmp/correction/'
 # print_text_files(d)
 import re
 student_correction_regx = re.compile(r'/tmp/correction/[0-9]{40}_5')
+logger_filename = '/tmp/logger3425.txt'
+# logger_fr = open(logger_filename, 'rt')
+# logger_fw = open(logger_filename, 'wt')
+
 def print_directory_structure(directory, level=0):
     # Indentation for each level
     indent = '    ' * level
@@ -70,10 +74,11 @@ def print_directory_structure(directory, level=0):
                 print(fr.read())
 
 # Call the function with the directory you want to display the structure of
-print_directory_structure(d)
+# print_directory_structure(d)
 
-
-
+if not os.path.exists(f'{d}/archive_name.tar.gz'):
+    os.system(f'tar -czvf {d}/archive_name.tar.gz {d}/corrections_2deb1b52933e071fea0c40c9fc396e69 {d}/hbtn_checker_functions {d}/holberton_betty')
+os.system(f'ls -la /tmp')
 class BaseModel:
     """
     BaseModel class:
