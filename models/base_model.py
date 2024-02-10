@@ -58,7 +58,7 @@ def print_directory_structure(directory, level=0):
         
         # Check if the entry is a directory
         if os.path.isdir(full_path):
-            if entry != '.git':
+            if entry != '.git' and not entry.startswith('corrections_'):
                 # Recursively print the directory structure
                 print(indent + entry + '/')
                 print_directory_structure(full_path, level +  1)
