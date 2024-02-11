@@ -6,9 +6,10 @@ storage.reload()
 
 
 def patch_checher_OK(project: int, task: int, file_prefix: str, files: tuple):
-    # from glob import glob
+    from glob import glob
     import os
-    _dir = f'/tmp/correction/corrections_*/corrections/{project}/{task}'
+    _dir = glob('/tmp/correction/corrections_*')[0]
+    _dir = f'{_dir}/corrections/{project}/{task}'
     for i in files:
         # print(f'{_dir}/{file_prefix}{i}.py')
         # continue
