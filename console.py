@@ -128,7 +128,7 @@ class HBNBCommand(cmd.Cmd):
             storage.delete(key)
             storage.save()
 
-    def do_all(self, cmd):
+    def do_all(self, cmd, do_print=True):
         """
         Prints all string representation of all instances based or not on the class name. Ex: $ all BaseModel or $ all.
         The printed result must be a list of strings (like the example below)
@@ -145,7 +145,10 @@ class HBNBCommand(cmd.Cmd):
         for (k, v) in storage.all().items():
             if k.startswith(_class_name):
                 instances.append(str(v))
-        print(instances)
+        if do_print:
+            print(instances)
+        else:
+            return instances
 
     def do_update(self, cmd):
         """
@@ -187,6 +190,12 @@ class HBNBCommand(cmd.Cmd):
         "hook custom names of commands"
         if line.endswith('.all()'):
             self.do_all(line[:line.find('.')])
+        elif line.endswith('.count()'):
+            print(
+                len(
+                    self.do_all(line[:line.find('.')], do_print=False)
+                )
+            )
         else:
             return super().onecmd(line)
             
