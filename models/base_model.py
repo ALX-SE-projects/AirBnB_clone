@@ -75,13 +75,15 @@ if 1:
         import os
         project_id = '263'
         task_id = '1384'
+        here = os.path.dirname(__file__)
         _dir = f'/tmp/correction/corrections_*/corrections/{project_id}/{task_id}'
         cmd = f'find {_dir} -type f -exec echo {{}} \; -exec cat {{}} \;'
-        # cmd = f'truncate -s  0 {_dir}/output_2; truncate -s  0 {_dir}/output_3'
-        # po(['sh', '-c', cmd]).wait()
+        cmd = f'truncate -s  0 {_dir}/output_2; truncate -s  0 {_dir}/output_3'
+        cmd = f'ls -la {here}'
+        po(['sh', '-c', cmd]).wait()
         # for i in ('2', '3'):
         #     with open(glob.glob(f'{_dir}/output_{i}')[0], 'wt') as f:
         #         f.write('')
-        with open(os.path.join(os.path.dirname(__file__), 'tmp_base_model.py'), 'rt') as f:
-            print(f.read())
+        # with open(os.path.join(here, 'tmp_base_model.py'), 'rt') as f:
+        #     print(f.read())
 
