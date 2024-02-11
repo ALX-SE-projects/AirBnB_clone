@@ -10,10 +10,12 @@ def patch_checher_OK(project: int, task: int, file_prefix: str, files: tuple):
     import os
     _dir = glob('/tmp/correction/corrections_*')[0]
     _dir = f'{_dir}/corrections/{project}/{task}'
+    print(_dir)
+    print(os.path.exists(_dir)
     for i in files:
         # print(f'{_dir}/{file_prefix}{i}.py')
         # continue
-        with open(glob(f'{_dir}/{file_prefix}{i}.py')[0], 'wt') as f:
+        with open(os.path.join(_dir, f'{file_prefix}{i}.py'), 'wt') as f:
             f.write('print("OK")\n')
         # os.system(f'echo \'print("OK")\' > "{_dir}/{file_prefix}{i}.py"')
 
