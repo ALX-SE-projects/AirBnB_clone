@@ -5,24 +5,27 @@ from console import HBNBCommand
 import sys
 
 class TestConsole(unittest.TestCase):
+    hbnb_command = HBNBCommand()
 
     @patch('sys.stdout', new=StringIO())
     def test_help_show(self):
-        # Instantiate the command object
-        hbnb_command = HBNBCommand()
-
-        # Execute the help show command
         hbnb_command.onecmd("help show")
-
-        # Capture the output
         output = sys.stdout.getvalue().strip()
-
-        # Assert that the output is as expected
         self.assertIn("Prints the string representation of an instance",
             output
             )
 
-    # Add more test methods for other commands and scenarios
+    @patch('sys.stdout', new=StringIO())
+    def test_quit(self):
+        pass
+
+    test_EOF = test_quit
+
+    @patch('sys.stdout', new=StringIO())
+    def test_emptyline(self):
+        pass
+
+
 
 if __name__ == '__main__':
     unittest.main()
