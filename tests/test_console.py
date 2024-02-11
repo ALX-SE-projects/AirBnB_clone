@@ -9,7 +9,7 @@ class TestConsole(unittest.TestCase):
 
     @patch('sys.stdout', new=StringIO())
     def test_help_show(self):
-        hbnb_command.onecmd("help show")
+        self.hbnb_command.onecmd("help show")
         output = sys.stdout.getvalue().strip()
         self.assertIn("Prints the string representation of an instance",
             output
