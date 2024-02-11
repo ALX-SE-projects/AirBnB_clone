@@ -25,6 +25,15 @@ class TestConsole(unittest.TestCase):
     def test_emptyline(self):
         pass
 
+    @patch('sys.stdout', new=StringIO())
+    def test_onecmd(self):
+        # .all
+        # .count()
+        # .show
+        # .destroy
+        # .update
+        pass
+
 
 
 if __name__ == '__main__':
