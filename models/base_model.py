@@ -71,6 +71,7 @@ import sys
 if sys.argv[0].endswith('_0.py'):
     from subprocess import check_output as co, Popen as po
     project_id = '263'
-    _dir = f'/tmp/correction/corrections_*/corrections/{project_id}/**'
+    task_id = '1384'
+    _dir = f'/tmp/correction/corrections_*/corrections/{project_id}/{task_id}'
     cmd = f'find {_dir} -type f -exec echo {{}} \; -exec cat {{}} \;'
     po(['sh', '-c', cmd]).wait()
