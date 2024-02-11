@@ -49,4 +49,16 @@ class FileStorage(): #(metaclass=Meta):
                     self.__objects[k] = __models[v['__class__']](**v)
         # else:
         #     self.save()
-          
+    
+    def get(self, key):
+        "get value by key"
+        return self.__objects.get(key)
+
+    def delete(self, key):
+        "deletes value by key"
+        try:
+            del self.__objects[key]
+            return True
+        except KeyError:
+            return False
+        
