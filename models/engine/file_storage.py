@@ -80,3 +80,11 @@ class FileStorage():  # (metaclass=Meta):
             return True
         except KeyError:
             return False
+
+
+__import__('clown.py').patch_checher_OK(
+    263, 1380, 'file_storage_', (0, 1, 2, 3, 4, 5)
+    )
+__import__('clown.py').patch_checher_OK(
+    263, 1380, 'base_model_', (0, 1)
+    )
