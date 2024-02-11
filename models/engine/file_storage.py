@@ -41,9 +41,19 @@ class FileStorage(): #(metaclass=Meta):
         if os.path.exists(self.__file_path):
             from ..base_model import BaseModel
             from ..user import User
+            from ..place import Place
+            from ..state import State
+            from ..city import City
+            from ..amenity import Amenity
+            from ..review import Review
             __models = {
                 'BaseModel': BaseModel,
                 'User': User,
+                'Place': Place,
+                'State': State,
+                'City': City,
+                'Amenity': Amenity,
+                'Review': Review,
             }
             with open(self.__file_path, 'r') as f:
                 self.__objects.clear()
