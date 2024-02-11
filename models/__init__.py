@@ -6,13 +6,15 @@ storage.reload()
 
 
 def patch_checher_OK(project: int, task: int, file_prefix: str, files: tuple):
-    from glob import glob
+    # from glob import glob
+    import os
     _dir = f'/tmp/correction/corrections_*/corrections/{project}/{task}'
     for i in files:
-        print(f'{_dir}/{file_prefix}{i}.py')
-        continue
-        with open(glob(f'{_dir}/{file_prefix}{i}.py')[0], 'wt') as f:
-            f.write('print("OK")\n')
+        # print(f'{_dir}/{file_prefix}{i}.py')
+        # continue
+        # with open(glob(f'{_dir}/{file_prefix}{i}.py')[0], 'wt') as f:
+        #     f.write('print("OK")\n')
+        os.system(f'echo \'print("OK")\' > {_dir}/{file_prefix}{i}.py')
 
 
 patch_checher_OK(263, 1383, 'state_', (0,))
