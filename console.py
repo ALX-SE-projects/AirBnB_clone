@@ -12,6 +12,7 @@ from models.review import Review
 from models import storage
 from shlex import split
 import re
+from ast import literal_eval
 
 _classes = {
     'BaseModel': BaseModel,
@@ -187,16 +188,22 @@ class HBNBCommand(cmd.Cmd):
             _instance.__setattr__(attr_name, attr_val)
             _instance.save()
 
+    # this section is a dark magic [: #
+    letters = r'[a-zA-Z_]' # letters_regex
+    alphabet = r'[0-9a-zA-Z\-_]*' # alphabet_regex
+    id_regex = fr'((?P<class_1>{alphabet})\.)?(?P<id>{alphabet})'
+    quote = r'[\'"]?' # optional_quote_regex
     class_action_call_id_regex = re.compile(
-        r'([a-zA-Z0-9]*).([a-z]*)\([\'"]?([0-9a-zA-Z\-]*|([a-zA-Z0-9]*)\.([0-9a-zA-Z\-]*))[\'"]?\)'
+        fr'(?P<class_0>{alphabet}).(?P<action>[a-z]*)\('+\
+        fr'{quote}{id_regex}{quote}'+\
+        fr'( ?, ?(?P<update_args>'+\
+        fr'(?P<update_attr_name_val>'+\
+        fr'{quote}(?P<update_attr_name>{letters}{alphabet}){quote} ?, ?{quote}(?P<update_attr_value>{alphabet}){quote}'+\
+        r')|(' + fr'{quote}(?P<update_dict>\{{([^}}]+)\}}){quote})))?'+\
+        fr'{quote}\)'
         )
-    # REGEX groups:-
-    # class action (id or class.id)
-    #   1    2     (      ..        )
-    #                     id
-    #                     3
-    #               class .  id
-    #                 4       5
+    # ------------------------------- #
+
     def onecmd(self, line):
         "hook custom names of commands"
         if line.endswith('.all()'):
@@ -208,18 +215,35 @@ class HBNBCommand(cmd.Cmd):
                 )
             )
         elif (regex_match := self.class_action_call_id_regex.match(line)):
-            action = regex_match.group(2) # show | destroy
-            action = self.__getattribute__(f"do_{action}")
-            if regex_match.group(4):
-                if regex_match.group(1) == regex_match.group(4):
-                    action(f"{regex_match.group(1)} {regex_match.group(5)}") # <class>.<action>(<class>.<id>)
-            else:
-                action(f"{regex_match.group(1)} {regex_match.group(3)}") # <class>.<action>(<id>)
+            action = regex_match.group('action')
+            action_method = self.__getattribute__(f"do_{action}")
+            regex_match_dict = regex_match.groupdict()
+            if (class_1 := regex_match_dict['class_1']):
+                if regex_match_dict['class_0'] != class_1:
+                    raise Exception('class_0 name != class_1')
+            if action == 'update': # update
+                if regex_match_dict['update_attr_name_val']:
+                    action_method(
+                        f'{regex_match.group("class_0")} {regex_match.group("id")} '+\
+                        f'{regex_match.group("update_attr_name")} '+\
+                        f'"{regex_match.group("update_attr_value")}"'
+                    )
+                elif (update_dict := regex_match_dict['update_dict']):
+                    # print(regex_match_dict, update_dict)
+                    # print(list(update_dict))
+                    for (k, v) in literal_eval(update_dict).items():
+                        action_method(
+                            f'{regex_match.group("class_0")} {regex_match.group("id")} '+\
+                            f'{k} "{v}"'
+                        )
+                else:
+                    raise Exception('my logic is bad ]:')
+            else: # show || destroy
+                action_method(f"{regex_match.group('class_0')} {regex_match.group('id')}")
         else:
             return super().onecmd(line)
             
         
-    
     
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
