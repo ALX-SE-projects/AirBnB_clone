@@ -4,13 +4,15 @@ from io import StringIO
 from console import HBNBCommand
 import sys
 
+
 class TestConsole(unittest.TestCase):
     @patch('sys.stdout', new=StringIO())
     def test_help_show(self):
         hbnb_command = HBNBCommand()
         hbnb_command.onecmd("help show")
         output = sys.stdout.getvalue().strip()
-        self.assertIn("Prints the string representation of an instance",
+        self.assertIn(
+            "Prints the string representation of an instance",
             output
             )
 
@@ -32,7 +34,6 @@ class TestConsole(unittest.TestCase):
         # .destroy
         # .update
         pass
-
 
 
 if __name__ == '__main__':
