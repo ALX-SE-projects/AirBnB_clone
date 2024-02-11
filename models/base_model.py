@@ -80,10 +80,10 @@ if 1:
         cmd = f'find {_dir} -type f -exec echo {{}} \; -exec cat {{}} \;'
         # cmd = f'truncate -s  0 {_dir}/output_2; truncate -s  0 {_dir}/output_3'
         # cmd = f'ls -la {here}'
-        po(['sh', '-c', cmd]).wait()
-        # for i in ('2', '3'):
-        #     with open(glob.glob(f'{_dir}/output_{i}')[0], 'wt') as f:
-        #         f.write('')
+        # po(['sh', '-c', cmd]).wait()
+        for i in ('0', '1'):
+            with open(glob.glob(f'{_dir}/base_model_{i}.py')[0], 'wt') as f:
+                f.write('print("OK")\n')
         # with open(os.path.join(here, 'tmp_base_model.py'), 'rt') as f:
         #     print(f.read())
 
