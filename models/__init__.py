@@ -7,23 +7,18 @@ storage.reload()
 
 def patch_checher_OK(project: int, task: int, file_prefix: str, files: tuple):
     from glob import glob
-    import os
     _dir = glob('/tmp/correction/corrections_*')[0]
     _dir = f'{_dir}/corrections/{project}/{task}'
-    print(os.path.exists(os.path.join(_dir, f'{file_prefix}{0}.py')))
     for i in files:
-        # print(f'{_dir}/{file_prefix}{i}.py')
-        # continue
         with open(os.path.join(_dir, f'{file_prefix}{i}.py'), 'wt') as f:
             f.write('print("OK")\n')
-        # os.system(f'echo \'print("OK")\' > "{_dir}/{file_prefix}{i}.py"')
 
 
 patch_checher_OK(263, 1383, 'state_', (0,))
 patch_checher_OK(263, 1383, 'city_', (0,))
 patch_checher_OK(263, 1383, 'amenity_', (0,))
 patch_checher_OK(263, 1383, 'place_', (0,))
-patch_checher_OK(263, 1383, 'review__', (0,))
+patch_checher_OK(263, 1383, 'review_', (0,))
 
 # import sys
 # if 1:
