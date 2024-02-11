@@ -139,7 +139,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             _class_name = self.get_class_name(cmd)
         if _class_name is None:
-            print("** class doesn't exist **")
+            # print("** class doesn't exist **")
             return
         instances = []
         for (k, v) in storage.all().items():
@@ -183,6 +183,12 @@ class HBNBCommand(cmd.Cmd):
             _instance.__setattr__(attr_name, attr_val)
             _instance.save()
 
+    def onecmd(self, line):
+        "hook custom names of commands"
+        if line.endswith('.all()'):
+            self.do_all(line[:line.find('.')])
+        else:
+            return super().onecmd(line)
             
         
     
