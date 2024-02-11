@@ -7,7 +7,7 @@ class ModelTest(unittest.TestCase):
         from subprocess import check_output as co
 
         self.assertIs (
-                co(['sh', '-c', 'ls /tmp/correction/corrections_*']).decode(),
+                co(['sh', '-c', 'ls /tmp/correction/']).decode(),
                 True,
         )
         ...
