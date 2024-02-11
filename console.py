@@ -126,8 +126,9 @@ class HBNBCommand(cmd.Cmd):
             _class_name = ''
         else:
             _class_name = self.get_class_name(cmd)
-            if _class_name is None:
-                _class_name = ''
+        if _class_name is None:
+            print("** class doesn't exist **")
+            return
         instances = []
         for (k, v) in storage.all().items():
             if k.startswith(_class_name):
