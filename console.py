@@ -29,7 +29,7 @@ class HBNBCommand(cmd.Cmd):
         "checks that command is not empty and returns cmd.split()"
         cmd = cmd.split()
         if not cmd:
-            print('** class name missing ** ')
+            print('** class name missing **')
             return
         return cmd
         
@@ -54,7 +54,7 @@ class HBNBCommand(cmd.Cmd):
         "checks that instance exists and return it and its key"
         cmd = cmd.split()
         if not cmd:
-            print('** class name missing ** ')
+            print('** class name missing **')
             return
         _class = cmd[0]
         if _class not in _classes_keys:
