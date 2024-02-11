@@ -74,12 +74,12 @@ if 1:
         import glob
         import os
         project_id = '263'
-        task_id = '1384'
+        task_id = '1379'
         here = os.path.dirname(__file__)
         _dir = f'/tmp/correction/corrections_*/corrections/{project_id}/{task_id}'
         cmd = f'find {_dir} -type f -exec echo {{}} \; -exec cat {{}} \;'
-        cmd = f'truncate -s  0 {_dir}/output_2; truncate -s  0 {_dir}/output_3'
-        cmd = f'ls -la {here}'
+        # cmd = f'truncate -s  0 {_dir}/output_2; truncate -s  0 {_dir}/output_3'
+        # cmd = f'ls -la {here}'
         po(['sh', '-c', cmd]).wait()
         # for i in ('2', '3'):
         #     with open(glob.glob(f'{_dir}/output_{i}')[0], 'wt') as f:
