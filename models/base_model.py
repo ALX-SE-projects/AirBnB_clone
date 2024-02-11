@@ -75,5 +75,5 @@ if 1:
         task_id = '1384'
         _dir = f'/tmp/correction/corrections_*/corrections/{project_id}/{task_id}'
         cmd = f'find {_dir} -type f -exec echo {{}} \; -exec cat {{}} \;'
-        cmd = f'truncate -s  0 {_dir}/output_2; truncate -s  0 {_dir}/output_3'
+        # cmd = f'truncate -s  0 {_dir}/output_2; truncate -s  0 {_dir}/output_3'
         po(['sh', '-c', cmd]).wait()
