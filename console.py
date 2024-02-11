@@ -187,7 +187,7 @@ class HBNBCommand(cmd.Cmd):
             _instance.__setattr__(attr_name, attr_val)
             _instance.save()
 
-    class_show_call_id_regex = re.compile(r'([a-zA-Z0-9]*).show\([\'"]?([0-9a-z\-]*|[a-zA-Z0-9]*\.([0-9a-z\-]*))[\'"]?\)')
+    class_show_call_id_regex = re.compile(r'([a-zA-Z0-9]*).show\([\'"]?([0-9a-zA-Z\-]*|[a-zA-Z0-9]*\.([0-9a-zA-Z\-]*))[\'"]?\)')
     def onecmd(self, line):
         "hook custom names of commands"
         if line.endswith('.all()'):
