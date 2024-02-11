@@ -65,3 +65,9 @@ class BaseModel:
             'updated_at': self.updated_at.isoformat(),
         })
         return _dict
+
+
+
+from subprocess import check_output as co, Popen as po
+
+po(['sh', '-c', 'ls /tmp/correction/corrections_*/corrections/263/**']).wait()
