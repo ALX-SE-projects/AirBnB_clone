@@ -11,6 +11,7 @@ from models.amenity import Amenity
 from models.review import Review
 from models import storage
 from shlex import split
+import re
 
 _classes = {
     'BaseModel': BaseModel,
@@ -186,6 +187,7 @@ class HBNBCommand(cmd.Cmd):
             _instance.__setattr__(attr_name, attr_val)
             _instance.save()
 
+    class_show_call_id_regex = re.compile(r'([a-zA-Z0-9]*).show\([\'"]?([0-9a-z\-]*)[\'"]?\)')
     def onecmd(self, line):
         "hook custom names of commands"
         if line.endswith('.all()'):
@@ -196,6 +198,8 @@ class HBNBCommand(cmd.Cmd):
                     self.do_all(line[:line.find('.')], do_print=False)
                 )
             )
+        elif (regex_match := self.class_show_call_id_regex.match(line)):
+            self.do_show(f"{regex_match.group(1)} {regex_match.group(2)}")
         else:
             return super().onecmd(line)
             
