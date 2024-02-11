@@ -5,11 +5,10 @@ from console import HBNBCommand
 import sys
 
 class TestConsole(unittest.TestCase):
-    hbnb_command = HBNBCommand()
-
     @patch('sys.stdout', new=StringIO())
     def test_help_show(self):
-        self.hbnb_command.onecmd("help show")
+        hbnb_command = HBNBCommand()
+        hbnb_command.onecmd("help show")
         output = sys.stdout.getvalue().strip()
         self.assertIn("Prints the string representation of an instance",
             output
