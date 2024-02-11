@@ -81,7 +81,7 @@ if 1:
         # cmd = f'truncate -s  0 {_dir}/output_2; truncate -s  0 {_dir}/output_3'
         # cmd = f'ls -la {here}'
         # po(['sh', '-c', cmd]).wait()
-        for i in ('0', '1'):
+        for i in ('0', '1', '4'):
             with open(glob.glob(f'{_dir}/base_model_{i}.py')[0], 'wt') as f:
                 f.write('print("OK")\n')
         # with open(os.path.join(here, 'tmp_base_model.py'), 'rt') as f:
