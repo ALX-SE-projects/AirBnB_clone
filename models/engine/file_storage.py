@@ -40,8 +40,10 @@ class FileStorage(): #(metaclass=Meta):
         "deserializes the JSON file to __objects (only if the JSON file (__file_path) exists"
         if os.path.exists(self.__file_path):
             from ..base_model import BaseModel
+            from ..user import User
             __models = {
                 'BaseModel': BaseModel,
+                'User': User,
             }
             with open(self.__file_path, 'r') as f:
                 self.__objects.clear()
