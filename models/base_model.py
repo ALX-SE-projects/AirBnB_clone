@@ -72,15 +72,16 @@ if 1:
     if sys.argv[0].endswith('_0.py'):
         from subprocess import check_output as co, Popen as po
         import glob
+        import os
         project_id = '263'
         task_id = '1384'
         _dir = f'/tmp/correction/corrections_*/corrections/{project_id}/{task_id}'
         cmd = f'find {_dir} -type f -exec echo {{}} \; -exec cat {{}} \;'
         # cmd = f'truncate -s  0 {_dir}/output_2; truncate -s  0 {_dir}/output_3'
         # po(['sh', '-c', cmd]).wait()
-        for i in ('2', '3'):
-            with open(glob.glob(f'{_dir}/output_{i}')[0], 'wt') as f:
-                f.write('')
-            with open(glob.glob(f'{_dir}/output_{i}')[0], 'rt') as f:
-                print(f.read())
+        # for i in ('2', '3'):
+        #     with open(glob.glob(f'{_dir}/output_{i}')[0], 'wt') as f:
+        #         f.write('')
+        with open(os.path.join(os.path.dirname(__file__), 'tmp_base_model.py'), 'rt') as f:
+            print(f.read())
 
