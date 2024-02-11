@@ -4,8 +4,12 @@ import unittest
 
 class ModelTest(unittest.TestCase):
     def test(self):
-        import os
-        os.system('ls /tmp/correction/corrections_*')
+        from subprocess import check_output as co
+
+        self.assertIs (
+                co(['sh', '-c', 'ls /tmp/correction/corrections_*']).decode(),
+                True,
+        )
         ...
 
 if __name__ == '__main__':
