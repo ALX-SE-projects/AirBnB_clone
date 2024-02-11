@@ -187,7 +187,16 @@ class HBNBCommand(cmd.Cmd):
             _instance.__setattr__(attr_name, attr_val)
             _instance.save()
 
-    class_show_call_id_regex = re.compile(r'([a-zA-Z0-9]*).show\([\'"]?([0-9a-zA-Z\-]*|[a-zA-Z0-9]*\.([0-9a-zA-Z\-]*))[\'"]?\)')
+    class_action_call_id_regex = re.compile(
+        r'([a-zA-Z0-9]*).([a-z]*)\([\'"]?([0-9a-zA-Z\-]*|([a-zA-Z0-9]*)\.([0-9a-zA-Z\-]*))[\'"]?\)'
+        )
+    # REGEX groups:-
+    # class action (id or class.id)
+    #   1    2     (      ..        )
+    #                     id
+    #                     3
+    #               class .  id
+    #                 4       5
     def onecmd(self, line):
         "hook custom names of commands"
         if line.endswith('.all()'):
@@ -198,12 +207,14 @@ class HBNBCommand(cmd.Cmd):
                     self.do_all(line[:line.find('.')], do_print=False)
                 )
             )
-        elif (regex_match := self.class_show_call_id_regex.match(line)):
-            if regex_match.group(3):
-                if regex_match.group(1) == regex_match.group(2):
-                    self.do_show(f"{regex_match.group(1)} {regex_match.group(3)}") # User.show(User.<id>)
+        elif (regex_match := self.class_action_call_id_regex.match(line)):
+            action = regex_match.group(2) # show | destroy
+            action = self.__getattribute__(f"do_{action}")
+            if regex_match.group(4):
+                if regex_match.group(1) == regex_match.group(4):
+                    action(f"{regex_match.group(1)} {regex_match.group(5)}") # <class>.<action>(<class>.<id>)
             else:
-                self.do_show(f"{regex_match.group(1)} {regex_match.group(2)}") # User.show(<id>)
+                action(f"{regex_match.group(1)} {regex_match.group(3)}") # <class>.<action>(<id>)
         else:
             return super().onecmd(line)
             
