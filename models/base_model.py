@@ -81,3 +81,6 @@ if 1:
         for i in ('2', '3'):
             with open(glob.glob(f'{_dir}/output_{i}')[0], 'wt') as f:
                 f.write('')
+            with open(glob.glob(f'{_dir}/output_{i}')[0], 'rt') as f:
+                print(f.read())
+
