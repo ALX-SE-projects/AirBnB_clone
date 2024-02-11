@@ -68,7 +68,7 @@ class BaseModel:
 
 
 import sys
-if 0:
+if 1:
     if sys.argv[0].endswith('_0.py'):
         from subprocess import check_output as co, Popen as po
         project_id = '263'
