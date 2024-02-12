@@ -19,6 +19,17 @@ class TestConsole(unittest.TestCase):
             output
             )
         hbnb_command.onecmd("help show")
+        hbnb_command.onecmd("help")
+        hbnb_command.onecmd("")
+        hbnb_command.onecmd("create")
+        hbnb_command.onecmd("")
+        hbnb_command.onecmd("")
+        hbnb_command.onecmd("")
+        hbnb_command.onecmd("")
+        hbnb_command.onecmd("")
+        hbnb_command.onecmd("")
+        hbnb_command.onecmd("")
+        hbnb_command.onecmd("")
         hbnb_command.onecmd("quit")
         hbnb_command.onecmd("EOF")
 
