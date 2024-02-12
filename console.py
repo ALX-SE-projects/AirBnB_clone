@@ -220,7 +220,7 @@ class HBNBCommand(cmd.Cmd):
     id_regex = fr'((?P<class_1>{alphabet})\.)?(?P<id>{alphabet})'
     quote = r'[\'"]?'  # optional_quote_regex
     class_action_call_id_regex = re.compile(
-        fr'(?P<class_0>{alphabet}).(?P<action>show|destroy|update)\(' +
+        fr'(?P<class_0>{alphabet}).(?P<action>.*)\(' +
         fr'{quote}{id_regex}{quote}' +
         fr'( ?, ?(?P<update_args>' +
         fr'(?P<update_attr_name_val>' +
@@ -243,36 +243,37 @@ class HBNBCommand(cmd.Cmd):
             )
         elif (regex_match := self.class_action_call_id_regex.match(line)):
             action = regex_match.group('action')
-            action_method = self.__getattribute__(f"do_{action}")
-            regex_match_dict = regex_match.groupdict()
-            if (class_1 := regex_match_dict['class_1']):
-                if regex_match_dict['class_0'] != class_1:
-                    raise Exception('class_0 name != class_1')
-            if action == 'update':  # update
-                if regex_match_dict['update_attr_name_val']:
-                    action_method(
-                        f'{regex_match.group("class_0")} ' +
-                        f'{regex_match.group("id")} ' +
-                        f'{regex_match.group("update_attr_name")} ' +
-                        f'"{regex_match.group("update_attr_value")}"'
-                    )
-                elif (update_dict := regex_match_dict['update_dict']):
-                    # print(regex_match_dict, update_dict)
-                    # print(list(update_dict))
-                    for (k, v) in literal_eval(update_dict).items():
+            if action in {'show', 'destroy', 'update'}:
+                action_method = self.__getattribute__(f"do_{action}")
+                regex_match_dict = regex_match.groupdict()
+                if (class_1 := regex_match_dict['class_1']):
+                    if regex_match_dict['class_0'] != class_1:
+                        raise Exception('class_0 name != class_1')
+                if action == 'update':  # update
+                    if regex_match_dict['update_attr_name_val']:
                         action_method(
                             f'{regex_match.group("class_0")} ' +
                             f'{regex_match.group("id")} ' +
-                            f'{k} "{v}"'
+                            f'{regex_match.group("update_attr_name")} ' +
+                            f'"{regex_match.group("update_attr_value")}"'
                         )
-                else:
-                    print(
-                        'missing update arguments: <attr_name_val>|<attr_dict>'
-                        )
-            else:  # show || destroy
-                action_method(
-                  f"{regex_match.group('class_0')} {regex_match.group('id')}"
-                )
+                    elif (update_dict := regex_match_dict['update_dict']):
+                        # print(regex_match_dict, update_dict)
+                        # print(list(update_dict))
+                        for (k, v) in literal_eval(update_dict).items():
+                            action_method(
+                                f'{regex_match.group("class_0")} ' +
+                                f'{regex_match.group("id")} ' +
+                                f'{k} "{v}"'
+                            )
+                    else:
+                        print(
+                            'missing update arguments: <attr_name_val>|<attr_dict>'
+                            )
+                else:  # show || destroy
+                    action_method(
+                    f"{regex_match.group('class_0')} {regex_match.group('id')}"
+                    )
         else:
             return super().onecmd(line)
 
