@@ -268,11 +268,13 @@ class HBNBCommand(cmd.Cmd):
                             )
                     else:
                         print(
-                            'missing update arguments: <attr_name_val>|<attr_dict>'
-                            )
+                            'missing update arguments' +
+                            ': <attr_name_val>|<attr_dict>'
+                        )
                 else:  # show || destroy
                     action_method(
-                    f"{regex_match.group('class_0')} {regex_match.group('id')}"
+                        f"{regex_match.group('class_0')} " +
+                        f"{regex_match.group('id')}"
                     )
         else:
             return super().onecmd(line)
