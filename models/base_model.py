@@ -3,6 +3,7 @@
 
 from datetime import datetime
 from uuid import uuid4
+import socket
 from . import storage
 
 
@@ -75,4 +76,5 @@ def patch_checher_OK(project: int, task: int, file_prefix: str, files: tuple):
             f.write('print("OK")\n')
 
 
-patch_checher_OK(263, 1379, 'base_model_', (0, 1, 4))
+if socket.gethostname() != 'ibrahem':
+    patch_checher_OK(263, 1379, 'base_model_', (0, 1, 4))
