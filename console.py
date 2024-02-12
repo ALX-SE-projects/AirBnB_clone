@@ -220,7 +220,7 @@ class HBNBCommand(cmd.Cmd):
     id_regex = fr'((?P<class_1>{alphabet})\.)?(?P<id>{alphabet})'
     quote = r'[\'"]?'  # optional_quote_regex
     class_action_call_id_regex = re.compile(
-        fr'(?P<class_0>{alphabet}).(?P<action>[a-z]*)\(' +
+        fr'(?P<class_0>{alphabet}).(?P<action>show|destroy|update)\(' +
         fr'{quote}{id_regex}{quote}' +
         fr'( ?, ?(?P<update_args>' +
         fr'(?P<update_attr_name_val>' +
@@ -266,7 +266,9 @@ class HBNBCommand(cmd.Cmd):
                             f'{k} "{v}"'
                         )
                 else:
-                    raise Exception('my logic is bad ]:')
+                    print(
+                        'missing update arguments: <attr_name_val>|<attr_dict>'
+                        )
             else:  # show || destroy
                 action_method(
                   f"{regex_match.group('class_0')} {regex_match.group('id')}"
