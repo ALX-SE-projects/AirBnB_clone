@@ -18,6 +18,10 @@ class TestConsole(unittest.TestCase):
             "Prints the string representation of an instance",
             output
             )
+        hbnb_command.onecmd("help show")
+        hbnb_command.onecmd("quit")
+        hbnb_command.onecmd("EOF")
+
 
     @patch('sys.stdout', new=StringIO())
     def test_quit(self):
