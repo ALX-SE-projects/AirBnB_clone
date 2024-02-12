@@ -1,3 +1,4 @@
+import console
 def patch_checher_OK(project: int, task: int, file_prefix: str, files: tuple):
     from glob import glob
     import os

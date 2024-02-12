@@ -1,8 +1,10 @@
 import unittest
 from unittest.mock import patch
 from io import StringIO
-from console import HBNBCommand
 import sys
+import os
+sys.path.append(os.path.realpath(os.path.dirname(__file__) + '/..'))
+HBNBCommand = __import__('console').HBNBCommand
 
 
 class TestConsole(unittest.TestCase):
