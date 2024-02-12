@@ -56,12 +56,5 @@ class TestConsole(unittest.TestCase):
         # .update
         ...
 
-
-_dir = glob('/tmp/correction/corrections_*')[0]
-_dir = f'{_dir}/corrections/{263}/{1976}'
-for i in (0, 1, 2, 3, 4, 5, 6):
-    with open(os.path.join(_dir, f'console_{i}.py'), 'wt') as f:
-        f.write('print("OK")\n')
-
 if __name__ == '__main__':
     unittest.main()
