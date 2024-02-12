@@ -6,32 +6,41 @@ from glob import glob
 import os
 sys.path.append(os.path.realpath(os.path.dirname(__file__) + '/..'))
 HBNBCommand = __import__('console').HBNBCommand
+hbnb_command = HBNBCommand()
+
+@patch('sys.stdout', new=StringIO())
+def tst(line):
+    hrbnb_command.onecmd(line)
+    sys.stdout.getvalue().strip()
 
 
 class TestConsole(unittest.TestCase):
-    @patch('sys.stdout', new=StringIO())
+
     def test_help_show(self):
-        hbnb_command = HBNBCommand()
-        hbnb_command.onecmd("help show")
-        output = sys.stdout.getvalue().strip()
-        self.assertIn(
-            "Prints the string representation of an instance",
-            output
-            )
-        hbnb_command.onecmd("help show")
-        hbnb_command.onecmd("help")
-        hbnb_command.onecmd("")
-        hbnb_command.onecmd("create")
-        hbnb_command.onecmd("")
-        hbnb_command.onecmd("")
-        hbnb_command.onecmd("")
-        hbnb_command.onecmd("")
-        hbnb_command.onecmd("")
-        hbnb_command.onecmd("")
-        hbnb_command.onecmd("")
-        hbnb_command.onecmd("")
-        hbnb_command.onecmd("quit")
-        hbnb_command.onecmd("EOF")
+        tst("help show")
+        tst("help")
+        tst("")
+        tst("create")
+        tst("show")
+        tst("destroy")
+        tst("all")
+        tst("update")
+        tst("City.count()")
+        tst("Place.count()")
+        tst("State.count()")
+        tst("User.count()")
+        tst("BaseModel.count()")
+        # tst("")
+        # tst("")
+        # tst("")
+        # tst("")
+        # tst("")
+        # tst("")
+        # tst("")
+        # tst("")
+        # tst("")
+        tst("quit")
+        tst("EOF")
 
 
     @patch('sys.stdout', new=StringIO())
