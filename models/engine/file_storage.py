@@ -83,7 +83,8 @@ class FileStorage():  # (metaclass=Meta):
             return False
 
 
-# def patch_checher_OK(project: int, task: int, file_prefix: str, files: tuple):
+# def patch_checher_OK(
+# project: int, task: int, file_prefix: str, files: tuple):
 #     from glob import glob
 #     _dir = f'/tmp/correction/corrections_*/corrections/{project}/{task}'
 #     for i in files:
