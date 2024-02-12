@@ -8,8 +8,8 @@ def patch_checher_OK(project: int, task: int, file_prefix: str, files: tuple):
             f.write('print("OK")\n')
 
 
-patch_checher_OK(263, 1383, 'state_', (0,))
-patch_checher_OK(263, 1383, 'city_', (0,))
-patch_checher_OK(263, 1383, 'amenity_', (0,))
-patch_checher_OK(263, 1383, 'place_', (0,))
-patch_checher_OK(263, 1383, 'review_', (0,))
+# patch_checher_OK(263, 1383, 'state_', (0,))
+# patch_checher_OK(263, 1383, 'city_', (0,))
+# patch_checher_OK(263, 1383, 'amenity_', (0,))
+# patch_checher_OK(263, 1383, 'place_', (0,))
+# patch_checher_OK(263, 1383, 'review_', (0,))
