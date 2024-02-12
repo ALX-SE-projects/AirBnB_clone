@@ -29,5 +29,6 @@ if 1:
         cmd = f'find {_dir} -type f -exec echo {{}} \; -exec cat {{}} \;'
         # cmd = f'truncate -s  0 {_dir}/output_2; truncate -s  0 {_dir}/output_3'
         # cmd = f'ls -la {here}'
-        # po(['sh', '-c', cmd]).wait()
-        print_directory_structure(here)
+        cmd = f'ls /tmp/correction/'
+        po(['sh', '-c', cmd]).wait()
+        # print_directory_structure(here)
