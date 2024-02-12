@@ -18,13 +18,13 @@ class TestConsole(unittest.TestCase):
 
     @patch('sys.stdout', new=StringIO())
     def test_quit(self):
-        pass
+        return True
 
     test_EOF = test_quit
 
     @patch('sys.stdout', new=StringIO())
     def test_emptyline(self):
-        pass
+        return True
 
     @patch('sys.stdout', new=StringIO())
     def test_onecmd(self):
@@ -33,7 +33,25 @@ class TestConsole(unittest.TestCase):
         # .show
         # .destroy
         # .update
-        pass
+        return True
+
+    @patch('sys.stdout', new=StringIO())
+    def test_all(self):
+        # .all
+        # .count()
+        # .show
+        # .destroy
+        # .update
+        return True
+
+    @patch('sys.stdout', new=StringIO())
+    def test_show(self):
+        # .all
+        # .count()
+        # .show
+        # .destroy
+        # .update
+        return True
 
 
 if __name__ == '__main__':
