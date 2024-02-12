@@ -8,6 +8,7 @@ sys.path.append(os.path.realpath(os.path.dirname(__file__) + '/..'))
 HBNBCommand = __import__('console').HBNBCommand
 hbnb_command = HBNBCommand()
 
+
 @patch('sys.stdout', new=StringIO())
 def tst(line):
     hrbnb_command.onecmd(line)
@@ -41,7 +42,6 @@ class TestConsole(unittest.TestCase):
         # tst("")
         tst("quit")
         tst("EOF")
-
 
     @patch('sys.stdout', new=StringIO())
     def test_quit(self):
